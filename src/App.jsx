@@ -10,28 +10,19 @@ import Products from "./Components/Products/products";
 import AboutPage from "./Components/AboutPage/AboutPage";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Funds from "./Components/Funds/Funds";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        <Route
-          path="/about"
-          element={
-            <ProtectedRoutes>
-              <AboutPage />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoutes>
-              <Dashboard />
-            </ProtectedRoutes>
-          }
-        />
+
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/funds" element={<Funds/>}/>
+        </Route>
       </Routes>
     </>
   );
