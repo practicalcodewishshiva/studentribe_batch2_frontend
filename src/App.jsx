@@ -6,7 +6,7 @@ import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import SignUp from "./Components/SignUp/SignUp";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Products from "./Components/Products/products";
+import Products from "./Components/Products/Products";
 import AboutPage from "./Components/AboutPage/AboutPage";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
