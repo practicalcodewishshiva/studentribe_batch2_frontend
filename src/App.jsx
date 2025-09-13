@@ -11,6 +11,7 @@ import AboutPage from "./Components/AboutPage/AboutPage";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Funds from "./Components/Funds/Funds";
+import LifecycleGuide from "./Components/LifecycleGuide/LifecycleGuide";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/funds" element={<Funds/>}/>
+        
         </Route>
+        <Route path="/lifecycle" element={<LifecycleGuide />} />
       </Routes>
     </>
   );

@@ -15,24 +15,36 @@ function LoginForm() {
     setPassword(event.target.value);
   }
 
+  const [token, setAccess_token] = useState("");
   async function handleLogin() {
     debugger;
-    const requestUrl = await axios.post(
-      "https://api.escuelajs.co/api/v1/auth/login",
-      {
-        email: userName,
-        password: password,
+    try {
+      const requestUrl = await axios.post(
+        "https://api.escuelajs.co/api/v1/auth/login",
+        {
+          email: userName,
+          password: password,
+        }
+      );
+
+      const responseData = await requestUrl;
+
+      console.log(responseData.data.access_token, "responseData");
+
+      const access_token = responseData.data.access_token;
+       localStorage.setItem("access_token", access_token);
+      if (access_token) {
+        console.log("accces_token", token);
       }
-    );
+    } catch (error) {
+      alert(error);
+    }
 
-    const responseData = await requestUrl;
-
-    console.log(responseData.data.access_token, "responseData");
-
-    const access_token = responseData.data.access_token;
     if (userName === userName && password === password) {
-      navigate("/dashboard");
-      localStorage.setItem("access_token", access_token);
+     const token=  localStorage.getItem('access_token')
+      if (token) {
+        navigate("/dashboard");
+      }
     } else {
       return alert("user is not found");
     }
@@ -57,3 +69,7 @@ function LoginForm() {
 export default LoginForm;
 
 
+// scope state issues
+// context api 
+
+// redux toolkit
