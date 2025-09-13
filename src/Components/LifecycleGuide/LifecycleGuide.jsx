@@ -192,29 +192,255 @@ export default function LifecycleGuide() {
       </div>
 
       <div className="assignment-section">
-        <h2>📋 Assignment: Fix Your Dashboard</h2>
-        <div className="problem-grid">
-          <div className="problem-card">
-            <h4>🔧 Problem 1: Loading States</h4>
-            <p>Add proper loading indicators</p>
+        <h2>📋 Assignment: Fix Your Dashboard Step by Step</h2>
+        <p>See the visual difference before and after each fix!</p>
+        
+        <div className="problem-section">
+          <h3>🔧 Problem 1: Add Loading State</h3>
+          
+          <div className="code-exercise">
+            <h4>📝 Fill in the blanks:</h4>
             <div className="code-snippet">
-              <code>const [loading, setLoading] = useState(false);</code>
+              <pre>{`const [data, setData] = useState(???); // null or ""?
+const [loading, setLoading] = useState(???); // true or false?
+
+async function getUserProfile() {
+  setLoading(???); // Start loading
+  // API call here
+  setLoading(???); // End loading
+}`}</pre>
             </div>
           </div>
-          
-          <div className="problem-card">
-            <h4>🛡️ Problem 2: Error Handling</h4>
-            <p>Handle API failures gracefully</p>
-            <div className="code-snippet">
-              <code>try &#123; /* API call */ &#125; catch (err) &#123; /* handle error */ &#125;</code>
+
+          <div className="before-after-demo">
+            <div className="before-demo">
+              <h4>❌ Before Fix</h4>
+              <div className="mock-browser">
+                <div className="browser-content">
+                  <h3>📊 Dashboard</h3>
+                  <div className="broken-image">❌ Broken</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="after-demo">
+              <h4>✅ After Fix</h4>
+              <div className="mock-browser">
+                <div className="browser-content">
+                  <h3>📊 Dashboard</h3>
+                  <div className="loading-spinner"></div>
+                  <p>⏳ Loading...</p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div className="problem-section">
+          <h3>🛡️ Problem 2: Add Error Handling</h3>
           
-          <div className="problem-card">
-            <h4>🧹 Problem 3: Cleanup</h4>
-            <p>Prevent memory leaks</p>
+          <div className="code-exercise">
+            <h4>📝 What happens when internet fails?</h4>
             <div className="code-snippet">
-              <code>return () =&gt; &#123; /* cleanup */ &#125;;</code>
+              <pre>{`const [error, setError] = useState(???); // What should error start with?
+
+try {
+  // API call
+} catch (err) {
+  setError(???); // What message to show?
+}`}</pre>
+            </div>
+          </div>
+
+          <div className="before-after-demo">
+            <div className="before-demo">
+              <h4>❌ App Crashes</h4>
+              <div className="mock-browser">
+                <div className="browser-content">
+                  <h3>📊 Dashboard</h3>
+                  <div className="error-crash">
+                    <h4>💥 Unhandled Error</h4>
+                    <p>TypeError: Cannot read properties of undefined</p>
+                    <p>App stopped working completely! 😞</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="after-demo">
+              <h4>✅ Graceful Error</h4>
+              <div className="mock-browser">
+                <div className="browser-content">
+                  <h3>📊 Dashboard</h3>
+                  <div className="error-message">
+                    ❌ Failed to load profile picture
+                    <button className="button btn-success">🔄 Try Again</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="problem-section">
+          <h3>⏰ Problem 3: Cleanup Timers</h3>
+          
+          <div className="code-exercise">
+            <h4>📝 Prevent memory leaks:</h4>
+            <div className="code-snippet">
+              <pre>{`useEffect(() => {
+  let timer = setInterval(() => {
+    console.log("Timer running...");
+  }, 1000);
+
+  return () => {
+    clearInterval(???); // What goes here?
+  };
+}, []);`}</pre>
+            </div>
+          </div>
+
+          <div className="before-after-demo">
+            <div className="before-demo">
+              <h4>❌ Without Cleanup</h4>
+              <div className="console-logs">
+                <div>Timer running...</div>
+                <div>Timer running...</div>
+                <div className="error-text">User navigates away</div>
+                <div className="error-text">Timer running... ← Still running! Memory leak!</div>
+                <div className="error-text">Timer running... ← Wasting resources!</div>
+              </div>
+            </div>
+            
+            <div className="after-demo">
+              <h4>✅ With Cleanup</h4>
+              <div className="console-logs">
+                <div>Timer running...</div>
+                <div>Timer running...</div>
+                <div className="success-text">User navigates away</div>
+                <div className="success-text">💀 Cleanup function runs</div>
+                <div className="success-text">✅ Timer stopped! No memory leak!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="complete-solution-section">
+        <div className="phase-header">
+          <div className="phase-icon">🎯</div>
+          <div className="phase-title">
+            <h2>Complete Solution - Professional Dashboard</h2>
+            <p>Your fixed Dashboard with all lifecycle phases handled properly</p>
+          </div>
+        </div>
+
+        <div className="code-section">
+          <h3>🎉 Final Professional Code</h3>
+          <pre>{`import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function Dashboard() {
+  const access_token = localStorage.getItem("access_token");
+  const navigate = useNavigate();
+  
+  // ✅ Fixed: Proper initial states
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const config = {
+    headers: { Authorization: \`Bearer \${access_token}\` }
+  };
+
+  async function getUserProfile() {
+    console.log("🚀 MOUNTING/UPDATING: Getting profile...");
+    
+    try {
+      // ✅ Fixed: Proper loading states
+      setLoading(true);
+      setError(null);
+      
+      const response = await axios.get(
+        "https://api.escuelajs.co/api/v1/auth/profile",
+        config
+      );
+      
+      setData(response.data.avatar);
+      console.log("✅ Profile loaded successfully!");
+      
+    } catch (err) {
+      // ✅ Fixed: Proper error handling
+      console.log("❌ Failed to load profile:", err);
+      setError("Failed to load profile picture");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // ✅ MOUNTING: Load data when component appears
+  useEffect(() => {
+    console.log("🎬 MOUNTING: Dashboard started");
+    getUserProfile();
+    
+    // ✅ UNMOUNTING: Cleanup when component dies
+    return () => {
+      console.log("💀 UNMOUNTING: Dashboard cleanup");
+    };
+  }, []);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>📊 Dashboard</h1>
+      
+      {/* ✅ Fixed: Proper button states */}
+      <button onClick={handleLogOut}>🚪 Logout</button>
+      <button 
+        onClick={getUserProfile}
+        disabled={loading}
+      >
+        {loading ? '⏳ Loading...' : '🔄 Refresh Profile'}
+      </button>
+
+      {/* ✅ Fixed: Conditional rendering */}
+      {loading && <p>⏳ Loading your picture...</p>}
+      {error && <p style={{ color: 'red' }}>❌ {error}</p>}
+      {data && !loading && !error && (
+        <img src={data} width="150" height="150" />
+      )}
+    </div>
+  );
+}`}</pre>
+        </div>
+
+        <div className="final-result-demo">
+          <h3>🎬 Final Result - Professional Dashboard</h3>
+          <div className="mock-browser">
+            <div className="browser-bar">
+              <div className="browser-dots">
+                <div className="dot red"></div>
+                <div className="dot yellow"></div>
+                <div className="dot green"></div>
+              </div>
+              <div className="url-bar">localhost:4000/dashboard</div>
+            </div>
+            <div className="browser-content">
+              <h2>📊 Dashboard</h2>
+              
+              <div className="button-group">
+                <button className="button btn-danger">🚪 Logout</button>
+                <button className="button btn-primary">🔄 Refresh Profile</button>
+              </div>
+              
+              <div className="success-content">
+                <div className="success-box">
+                  <p>✅ Here's your profile picture:</p>
+                  <div className="profile-image">JD</div>
+                  <p>John Doe</p>
+                  <p>Profile loaded successfully!</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

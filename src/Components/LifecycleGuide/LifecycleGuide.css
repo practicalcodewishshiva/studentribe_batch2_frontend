@@ -511,6 +511,186 @@
   font-weight: bold;
 }
 
+/* Assignment Section Styles */
+.assignment-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 30px 0;
+}
+
+.assignment-section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.problem-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 25px 0;
+  backdrop-filter: blur(5px);
+}
+
+.problem-section h3 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.code-exercise {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.code-exercise h4 {
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.code-exercise .code-snippet {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.code-exercise pre {
+  color: white;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.before-after-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.before-demo, .after-demo {
+  text-align: center;
+}
+
+.before-demo h4 {
+  color: #dc3545;
+  margin-bottom: 15px;
+}
+
+.after-demo h4 {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.broken-image {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #dc3545;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  color: #dc3545;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.error-crash {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #f5c6cb;
+  text-align: left;
+}
+
+.error-crash h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #721c24;
+}
+
+.error-crash p {
+  margin: 5px 0;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.console-logs {
+  background: #2d3748;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 12px;
+  text-align: left;
+}
+
+.console-logs div {
+  margin: 5px 0;
+}
+
+.error-text {
+  color: #ff6b6b;
+}
+
+.success-text {
+  color: #4ecdc4;
+}
+
+/* Complete Solution Section */
+.complete-solution-section {
+  background: white;
+  margin: 30px 0;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.final-result-demo {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.final-result-demo h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.success-box {
+  background: #e8f5e8;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  border: 2px solid #28a745;
+}
+
+.success-box p {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.success-box p:last-child {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* Enhanced Code Section */
+.code-section pre {
+  color: #e0e0e0;
+  line-height: 1.5;
+  font-size: 14px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 @media (max-width: 768px) {
   .visual-demo {
     grid-template-columns: 1fr;
@@ -531,5 +711,13 @@
   
   .problem-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .before-after-demo {
+    grid-template-columns: 1fr;
+  }
+  
+  .code-section pre {
+    font-size: 12px;
   }
 }
