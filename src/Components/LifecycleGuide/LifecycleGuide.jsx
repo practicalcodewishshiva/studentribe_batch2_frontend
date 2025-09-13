@@ -206,7 +206,7 @@ export default function LifecycleGuide() {
             <h4>🛡️ Problem 2: Error Handling</h4>
             <p>Handle API failures gracefully</p>
             <div className="code-snippet">
-              <code>try { /* API call */ } catch (err) { /* handle error */ }</code>
+              <code>try &#123; /* API call */ &#125; catch (err) &#123; /* handle error */ &#125;</code>
             </div>
           </div>
           
@@ -214,7 +214,7 @@ export default function LifecycleGuide() {
             <h4>🧹 Problem 3: Cleanup</h4>
             <p>Prevent memory leaks</p>
             <div className="code-snippet">
-              <code>return () =&gt; { /* cleanup */ };</code>
+              <code>return () =&gt; &#123; /* cleanup */ &#125;;</code>
             </div>
           </div>
         </div>
