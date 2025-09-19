@@ -12,21 +12,27 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Funds from "./Components/Funds/Funds";
 import LifecycleGuide from "./Components/LifecycleGuide/LifecycleGuide";
-
+import {AuthUserCredentials} from "./Components/ContextAPI/AuthUserCredentials";
 function App() {
+  const name = "Kavya";
+  const obj = {
+    name:"Mounika",
+    location:"Hyderabad"
+  }
+ 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
+      {/* <AuthUserCredentials.Provider > */}
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
 
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/about" element={<AboutPage />} />
+          <Route >
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/funds" element={<Funds />} />
+          </Route>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/funds" element={<Funds/>}/>
-        
-        </Route>
-        <Route path="/lifecycle" element={<LifecycleGuide />} />
-      </Routes>
+        </Routes>
+      {/* </AuthUserCredentials.Provider> */}
     </>
   );
 }
