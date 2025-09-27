@@ -2,16 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Dashboard from "../Dashboard/Dashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { loginFormDataSubmit,retrievingUserProfile } from "../../features/LoginForm/LoginFormSlice";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
 // PRIMTIVES
 function LoginForm() {
+  const access_token = useSelector((globalState) => globalState.loginForm.data.access_token);
 
-
+  console.log("access_token", access_token);
+  const dispatch = useDispatch();
   // const Name = "Upendra";
-  const [userName, setUserName] = useState("");
+  const [email, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  function handleUserNameChange(event) {
+  function handleEmailChange(event) {
     setUserName(event.target.value);
   }
 
@@ -21,57 +27,49 @@ function LoginForm() {
 
   const [token, setAccess_token] = useState("");
   async function handleLogin() {
-    debugger;
-    try {
-      const requestUrl = await axios.post(
-        "https://api.escuelajs.co/api/v1/auth/login",
-        {
-          email: userName,
-          password: password,
-        }
-      );
+    dispatch(loginFormDataSubmit({ email, password }));
 
-      const responseData = await requestUrl;
 
-      console.log(responseData.data.access_token, "responseData");
-
-      const access_token = responseData.data.access_token;
-       localStorage.setItem("access_token", access_token);
-      if (access_token) {
-        console.log("accces_token", token);
-      }
-    } catch (error) {
-      alert(error);
-    }
-
-    if (userName === userName && password === password) {
-     const token=  localStorage.getItem('access_token')
+    dispatch(retrievingUserProfile(access_token))
+    if (email === email && password === password) {
+      const token = localStorage.getItem("access_token");
       if (token) {
         navigate("/dashboard");
       }
     } else {
       return alert("user is not found");
     }
-    console.log("handle login works", userName, password);
+    console.log("handle login works", email, password);
   }
 
-  console.log(userName, "changes");
+  console.log(email, "changes");
   return (
     <>
       <h1>Zerodha Login</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>UserName</label>
-        <input type="text" onChange={handleUserNameChange} />
+        <label>email</label>
+        <input type="text" onChange={handleEmailChange} />
         <label>Password</label>
         <input type="password" onChange={handlePasswordChange} />
         <button onClick={handleLogin}>Login</button>
       </div>
-    
     </>
   );
 }
 
 export default LoginForm;
 
+// email
+// password
 
+// Login api call ------ data ---- useState(store) ----- map use data dispaly   local ga data store
 
+// const globalApicall = createAsyncThunk()=>{
+// return Response.data
+// }
+
+// global data store ----   api call - dispatch(loginapicall) ----- loginFormSlice --- extranreducers --- addCase(globalApicall api call status ===success || failure || pending)
+
+// globalState store
+
+// mango globalStore

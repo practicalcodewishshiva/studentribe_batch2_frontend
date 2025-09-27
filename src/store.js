@@ -1,21 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterSlice from "./features/counter/counterSlice";
+import LoginFormSlice from "./features/LoginForm/LoginFormSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
+    loginForm: LoginFormSlice,
   },
 });
-
-
-
-
-
-// Store global Store 
-
-
-// each individual components data and logic matrame 
-
-// CounterReducer  data manage logic update edit delete global data 
-
-// LoginReducer 

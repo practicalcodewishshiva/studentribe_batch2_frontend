@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const [price, incresePrice] = useState(265);
 const initialState = {
   value: 0,
   price: 265,
@@ -16,7 +15,7 @@ export const counterSlice = createSlice({
   reducers: {
     //global way
     globalCounterIncrease: (state, action) => {
-      debugger
+      
       state.price += action.payload;
     },
     globalCounterDecrease:(state,action)=>{
